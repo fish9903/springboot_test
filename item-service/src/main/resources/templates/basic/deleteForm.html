@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>상품 목록</h2>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>선택</th>
+                <th>ID</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <form method="post" action="">
+                <tr th:each="item: ${items}">
+                    <td><input type="checkbox" name="checked" th:value="${item.id}"></td>
+                    <td><a href="items.html" th:href="@{/basic/items/{itemId}(itemId=${item.getId()})}" th:text="${item.getId()}">회원id</a></td>
+                    <td><a href="items.html" th:href="@{|/basic/items/${item.getId()}|}" th:text="${item.getItemName()}">상품명</a></td>
+                    <td th:text="${item.getPrice()}">10000</td>
+                    <td th:text="${item.getQuantity()}">10</td>
+                </tr>
+                <input type="submit" value="선택상품 삭제">
+            </form>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
