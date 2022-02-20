@@ -6,6 +6,15 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<!--
+    redirect로 넘어감
+    param = 쿼리 파라미터(Model에 안 넣어줘도 기본 옵션)
+     -->
+<div th:if="${param.status}">
+  <script type="text/javascript">
+    alert("삭제 완료");
+  </script>
+</div>
 <div class="container" style="max-width: 600px">
   <div class="py-5 text-center">
     <h2>상품 목록</h2>

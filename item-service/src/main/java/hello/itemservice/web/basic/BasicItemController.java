@@ -111,13 +111,19 @@ public class BasicItemController {
     }
 
     @PostMapping("/delete")
-    public String deletePost(@RequestParam MultiValueMap<String, List<Long>> paramMap, Model model) {
+    public String deletePost(@RequestParam MultiValueMap<String, List<Long>> paramMap, RedirectAttributes redirectAttributes) {
+        if(paramMap.size() == 0) {
+            return "basic/items";
+        }
+
         ArrayList<Long> values = new ArrayList(paramMap.get("checked"));
 
         Iterator iter = values.iterator();
         while(iter.hasNext()) {
             itemRepository.delete(Long.parseLong((String) iter.next()));
         }
+
+        redirectAttributes.addAttribute("status", true);
 
         return "redirect:/basic/items";
     }
